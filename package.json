@@ -1,0 +1,21 @@
+{
+  "name": "essec-scim-server",
+  "version": "0.1",
+  "description": "nodejs scim server reading BANNER db",
+  "main": "SCIMServer.js",
+  "author": "Baptiste Duvey",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "fs": "0.0.1-security",
+    "moment": "^2.30.1",
+    "oracledb": "^6.8.0",
+    "pg": "^8.14.1",
+    "url": "^0.11.0",
+    "uuid": "^11.1.0"
+  },
+  "engines": {
+    "node": "23.11.0"
+  }
+}

@@ -1,4 +1,5 @@
 function createScimUserFromTableRow(row) {
+    console.log(row);
     const scimUser = {
         schemas: [
             "urn:ietf:params:scim:schemas:core:2.0:User",
@@ -32,7 +33,7 @@ function createScimUserFromTableRow(row) {
             CAMPUS: row[6], // ESSECCAMPUS
             CSN: row[7], // ESSECCSN
             MAIL: row[8], // ESSECMAIL
-            MFAACTIVE: row[9] === 'TRUE', // ESSECMFAACTIVE, convert to boolean
+            MFAACTIVE: row[9], // ESSECMFAACTIVE, convert to boolean
             NOMNAISS: row[10], // ESSECNOMNAISS
             PRENOMNAISS: row[11], // ESSECPRENOMNAISS
             PEGASEID: row[12], // ESSECPEGASEID
@@ -41,7 +42,7 @@ function createScimUserFromTableRow(row) {
             PERSONALMAIL: row[18] // PERSONALMAIL
         }
     };
-
+    console.log(scimUser);
     return scimUser;
 }
 
@@ -49,7 +50,7 @@ function createScimGroupFromTableRow(row) {
     const scimGroup = {
         schemas: ["urn:ietf:params:scim:schemas:core:2.0:Group"],
             id: row[0],
-            externalId: row[0],         // id
+            externalId: row[0],
             displayName: row[1],
             meta: {
                 resourceType: "Group",

@@ -1,5 +1,6 @@
 const { Pool } = require('pg');
 const fs = require('fs');
+let out = require('./logs');
 
 function base64ToString(base64String) {
   try {
@@ -32,7 +33,6 @@ async function getConnection() {
     return client; // Return the client
   } catch (err) {
     const errorDetail = err instanceof Error ? err.message : String(err);
-    console.error('Error getting PostgreSQL connection:', errorDetail);
     throw new Error(`Failed to connect to PostgreSQL: ${errorDetail}`);
   }
 }
@@ -43,7 +43,6 @@ async function executeQuery(client, sql, params = []) {
     return result;
   } catch (err) {
     const errorDetail = err instanceof Error ? err.message : String(err);
-    console.error('Error executing PostgreSQL query:', errorDetail);
     throw new Error(`Query execution failed: ${errorDetail}`);
   } finally {
     // IMPORTANT: Release the client back to the pool, regardless of success or failure

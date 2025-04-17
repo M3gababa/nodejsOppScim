@@ -1,5 +1,6 @@
 const oracledb = require('oracledb');
-const fs = require('fs'); // For reading database config
+const fs = require('fs');
+let out = require('./logs');
 
 function base64ToString(base64String) {
   try {
@@ -12,14 +13,14 @@ function base64ToString(base64String) {
 
 async function getConnection() {
   try {
-    const config = JSON.parse(fs.readFileSync('./dbconfig.json', 'utf8'));
+    const config = JSON.parse(fs.readFileSync('dbconfig.json', 'utf8'));
     return await oracledb.getConnection({
       user: config.user,
       password: base64ToString(config.password),
       connectString: config.connectString,
     });
   } catch (err) {
-    console.error('Error getting database connection:', err);
+    out.log("ERROR", "SQL", 'Error getting database connection:'+ err);
     throw err;
   }
 }
@@ -29,7 +30,7 @@ async function executeQuery(connection, sql, binds = []) {
     const result = await connection.execute(sql, binds);
     return result;
   } catch (err) {
-    console.error('Error executing query:', err);
+    out.log("ERROR", "SQL", 'Error executing query:'+ err);
     throw err;
   }
 }

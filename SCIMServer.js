@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.url);
 
     let txt = "&#9940; This is not suitable for PRODUCTION &#9940; <br/>";
+
     res.send(txt);
 });
 
@@ -25,6 +26,7 @@ app.get('/scim/', (req, res) => {
     let txt = "&#9940; This is not suitable for PRODUCTION &#9940; <br/>";
     txt += "This aims to be a test for the BANNER database import and is not suitable for PRODUCTION.<br/>";
     txt += "This endpoint specify that this is a SCIM connector";
+
     res.send(txt);
 });
 
@@ -35,6 +37,7 @@ app.get('/scim/v2/', (req, res) => {
     txt += "This aims to be a test for the BANNER database import and is not suitable for PRODUCTION.<br/>";
     txt += "This endpoint specify that this is a SCIM connector <br/>";
     txt += "This endpoint specify that this is based on SCIM V2.0 model";
+
     res.send(txt);
 });
 
@@ -89,7 +92,9 @@ app.get('/scim/v2/Users', async (req, res) => {
         connection = await getConnection();
         
         const query = `SELECT BID, CN, DN, DESCRIPTION, ESSECADLOGIN, ESSECBID, ESSECCAMPUS, ESSECCSN, ESSECMAIL, ESSECMFAACTIVE, ESSECNOMNAISS, ESSECPRENOMNAISS, ESSECPEGASEID, GIVENNAME, INITIALS, IPPHONE, MAIL, NAME, PERSONALMAIL, SN, USERPASSWORD, PRIMARYEMAIL, FIRSTNAME, LASTNAME, ORGUNITPATH, ALIASMAIL FROM COMPTES;`;
+        console.log(query);
         const users = result.rows.map(row => createScimUserFromTableRow(row));
+        console.log(jsonResult);
         
         const jsonResult = {
             schemas: ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],

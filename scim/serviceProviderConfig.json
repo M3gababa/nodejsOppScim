@@ -1,0 +1,33 @@
+{
+    "schemas":[
+        "urn:scim:schemas:core:2.0",
+        "urn:okta:schemas:scim:providerconfig:2.0"
+    ],
+    "documentationUrl":"/",
+    "patch":{
+        "supported":false
+    },
+    "bulk":{
+        "supported":false
+    },
+    "filter":{
+        "supported":false
+    },
+    "changePassword":{
+        "supported":true
+    },
+    "sort":{
+        "supported":false
+    },
+    "etag":{
+        "supported":false
+    },
+    "authenticationSchemes":[
+    ],
+    "urn:okta:schemas:scim:providerconfig:2.0": {
+        "userManagementCapabilities": [
+            "IMPORT_NEW_USERS",
+            "IMPORT_PROFILE_UPDATES"
+        ]
+    }
+}

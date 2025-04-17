@@ -1,0 +1,48 @@
+{
+    "schemas": [
+        "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+    ],
+    "totalResults": 2,
+    "startIndex": 0,
+    "itemsPerPage": 2,
+    "Resources": [
+        {
+            "id": "Group",
+            "meta": {
+                "resourceType": "ResourceType",
+                "created": "2023-07-17T15:26:04",
+                "lastModified": "2023-07-17T15:26:04",
+                "location": "https://example.com/v2/ResourceTypes/Group"
+            },
+            "schemas": [
+                "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+            ],
+            "name": "Group",
+            "description": "Group resource",
+            "schema": "urn:ietf:params:scim:schemas:core:2.0:Group",
+            "endpoint": "/Groups"
+        },
+        {
+            "id": "User",
+            "meta": {
+                "resourceType": "ResourceType",
+                "created": "2023-07-17T15:25:04",
+                "lastModified": "2023-07-17T15:25:04",
+                "location": "https://example.com/v2/ResourceTypes/User"
+            },
+            "schemas": [
+                "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+            ],
+            "name": "User",
+            "description": "User Accounts",
+            "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+            "schemaExtensions": [
+                {
+                    "schema": "urn:okta:bduveyoie_banner_2:2.0:user:custom",
+                    "required": false
+                }
+            ],
+            "endpoint": "/User"
+        }
+    ]
+}

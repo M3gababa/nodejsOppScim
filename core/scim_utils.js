@@ -1,10 +1,8 @@
 function createScimUserFromTableRow(row) {
-    console.log(row);
     const scimUser = {
         schemas: [
             "urn:ietf:params:scim:schemas:core:2.0:User",
-            "urn:ietf:params:scim:schemas:extension:okta:2.0:User",
-            "urn:okta:bduveyoie_banner_2:2.0:User:Custom"
+            "urn:okta:bduveyoie_banner_2:2.0:user:custom"
         ],
         id: row[0], // BID
         externalId: row[0], // BID (same as id)
@@ -12,37 +10,37 @@ function createScimUserFromTableRow(row) {
         name: {
             givenName: row[22], // FIRSTNAME
             familyName: row[23], // LASTNAME
-            formatted: row[2], // CN
+            formatted: row[17], // CN
         },
-        displayName: row[2], // CN
+        displayName: row[17], // CN
         active: true, // You might need logic to determine this
-        title: row[4], // TITLE
+        title: row[3], // TITLE
         emails: row[16] ? [{ value: row[16], type: "work", primary: true }] : [], // MAIL
         groups: [], // You'll likely need a separate query to populate this
+        "urn:okta:bduveyoie_banner_2:2.0:user:custom": {
+            dn: row[2], // DN
+            description: row[3], // DESCRIPTION
+            adlogin: row[5], // ESSECADLOGIN
+            bid: row[0], // BID
+            campus: row[6], // ESSECCAMPUS
+            csn: row[7], // ESSECCSN
+            mail: row[8], // ESSECMAIL
+            mfaactive: row[9], // ESSECMFAACTIVE, convert to boolean
+            nomnaiss: row[10], // ESSECNOMNAISS
+            prenomnaiss: row[11], // ESSECPRENOMNAISS
+            pegaseid: row[12], // ESSECPEGASEID
+            initials: row[14], // INITIALS
+            ipphone: row[15], // IPPHONE
+            personalmail: row[18] // PERSONALMAIL
+        },
         meta: {
             resourceType: "User",
             created: row[26] ? new Date(row[26]).toISOString() : null, // ACTIVITY_DATE
             lastModified: row[26] ? new Date(row[26]).toISOString() : null, // ACTIVITY_DATE
             location: `/Users/${row[0]}` // BID
-        },
-        "urn:okta:bduveyoie_banner_2:2.0:User:Custom": {
-            DN: row[2], // DN
-            DESCRIPTION: row[3], // DESCRIPTION
-            ADLOGIN: row[5], // ESSECADLOGIN
-            BID: row[0], // BID
-            CAMPUS: row[6], // ESSECCAMPUS
-            CSN: row[7], // ESSECCSN
-            MAIL: row[8], // ESSECMAIL
-            MFAACTIVE: row[9], // ESSECMFAACTIVE, convert to boolean
-            NOMNAISS: row[10], // ESSECNOMNAISS
-            PRENOMNAISS: row[11], // ESSECPRENOMNAISS
-            PEGASEID: row[12], // ESSECPEGASEID
-            INITIALS: row[14], // INITIALS
-            IPPHONE: row[15], // IPPHONE
-            PERSONALMAIL: row[18] // PERSONALMAIL
         }
     };
-    console.log(scimUser);
+
     return scimUser;
 }
 

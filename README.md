@@ -1,19 +1,23 @@
 # SCIMv2 Connector - Database
 
+:no_entry: :no_entry: :no_entry: This connector is not usable for PRODUCTION. Please use it only for TEST :no_entry: :no_entry: :no_entry: 
+
 ### Overview
 
-This is a SCIMv2 connector implementation working with an Oracle database. It's aim to be connector to Okta based on the Okta On-Premise Provisioning (OPP) agent.
+This is a SCIMv2 connector implementation working with an Oracle database. It's aim to be connected to Okta through an Okta On-Premise Provisioning (OPP) agent.
 
 It supports only the following features : 
  - IMPORT_NEW_USERS (Endpoints: /Users & /Groups)
  - IMPORT_PROFILE_UPDATES (Endpoints: /Users & /Groups)
  - IMPORT_USER_SCHEMA (Endpoints: /ServiceProviderConfig, /ResourceTypes, /Schemas)
 
+
 :rotating_light: In order for Okta to leverage the SCIMv2 standard, the SCIM connector base URL has to ends with /v2/.
+
 
 ![Architecture](/Okta_SCIMv2_Oracle.png "Architecture")
 
-Refer to Okta online documentation for more [Here](https://help.okta.com/en-us/content/topics/provisioning/opp/opp-create-scim-connectors.htm).
+Refer to Okta online documentation for more [here](https://help.okta.com/en-us/content/topics/provisioning/opp/opp-create-scim-connectors.htm).
 
 ### Deployment Guide (CentOS)
 
@@ -52,7 +56,7 @@ cd /var/www/scim
 vim dbconfig.json
 ```
 
-The file has to contain the following content. Password is simply encoded in base64 : this is only for dev purpose, on PROD you’ll have to add security layer.
+The file has to contain the following elements. :warning: Password is simply encoded in base64 : this is only for dev purpose, on PROD you’ll have to add security layer.
 ```json
 {
 	"user": "<<login>>",
@@ -63,7 +67,7 @@ The file has to contain the following content. Password is simply encoded in bas
 
 6. Systemd Service Configuration
 
-Initiate the elements required for the linux service to run automatically.
+Initiate the system file required for the linux service to run automatically.
 ```bash
 sudo vim /etc/systemd/system/scim.service
 ```
@@ -75,7 +79,7 @@ Description=SCIM Application Server
 After=network.target
 
 [Service]
-User=your_username
+User=<<your_username>>
 WorkingDirectory=/var/www/scim
 ExecStart=/usr/bin/node SCIMServer.js
 Restart=always
@@ -87,9 +91,9 @@ WantedBy=multi-user.target
 
 7. Enable and Start the Service
 ```bash
-sudo systemctl enable your-app-name.service
-sudo systemctl start your-app-name.service
-sudo systemctl status your-app-name.service
+sudo systemctl enable scim.service
+sudo systemctl start scim.service
+sudo systemctl status scim.service
 ```
 
 8. Firewall Configuration (If Necessary)

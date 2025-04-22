@@ -315,7 +315,7 @@
         "schemas": [
             "urn:ietf:params:scim:schemas:core:2.0:Schema"
         ],
-        "id": "urn:okta:bduveyoie_banner_2:2.0:user:custom",
+        "id": "urn:okta:scim:2.0:user:custom",
         "meta": {
             "resourceType": "Schema",
             "created": "2001-01-01T00:00:00+00:00",

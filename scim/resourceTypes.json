@@ -31,7 +31,7 @@
         "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
         "schemaExtensions": [
             {
-                "schema": "urn:okta:bduveyoie_banner_2:2.0:user:custom",
+                "schema": "urn:okta:scim:2.0:user:custom",
                 "required": false
             }
         ],

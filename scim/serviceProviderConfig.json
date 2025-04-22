@@ -27,7 +27,8 @@
     "urn:okta:schemas:scim:providerconfig:2.0": {
         "userManagementCapabilities": [
             "IMPORT_NEW_USERS",
-            "IMPORT_PROFILE_UPDATES"
+            "IMPORT_PROFILE_UPDATES",
+            "IMPORT_USER_SCHEMA"
         ]
     }
 }

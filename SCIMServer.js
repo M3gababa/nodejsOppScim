@@ -11,7 +11,7 @@ const port = 3000;
 
 app.use(bodyParser.json());
 
-// Default routes
+// --- Default Endpoints ---
 app.get('/', (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.url);   
     let txt = "&#9940; This is not suitable for PRODUCTION &#9940; <br/>";
@@ -35,26 +35,64 @@ app.get('/scim/v2/', (req, res) => {
     res.send(txt);
 });
 
-// --- Service Provider Config Endpoint ---
+// --- Service Provider Config Endpoints ---
 app.get('/scim/v2/ServiceProviderConfig', (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.url);
     res.json(JSON.parse(fs.readFileSync('./scim/serviceProviderConfig.json', 'utf8')));
 });
 
-// ResourceTypes
 app.get('/scim/v2/ResourceTypes', async (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.url);
-    res.json(JSON.parse(fs.readFileSync('./scim/resourceTypes.json', 'utf8')));
+
+    const jsonResourceTypes = JSON.parse(fs.readFileSync('./scim/resourceTypes.json', 'utf8'));
+    const jsonResult = {
+        "schemas": [
+            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+        ],
+        "totalResults": jsonResourceTypes.length,
+        "Resources": jsonResourceTypes
+    }
+
+    res.json(jsonResult);
+});
+
+app.get('/scim/v2/ResourceTypes/:id', async (req, res) => {
+    out.log("INFO", "GET", "Got request: " + req.url);
+
+    const attrId = req.params.id;
+    const jsonResourceTypes = JSON.parse(fs.readFileSync('./scim/resourceTypes.json', 'utf8'));
+    const resourceType = jsonResourceTypes.find(obj => obj.id===attrId);
+
+    res.json(resourceType);
 });
 
 app.get('/scim/v2/Schemas', async (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.url);
-    res.json(JSON.parse(fs.readFileSync('./scim/schemas.json', 'utf8')));
+
+    const jsonSchema = JSON.parse(fs.readFileSync('./scim/schemas.json', 'utf8'));
+    const jsonResult = {
+        "schemas": [
+            "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+        ],
+        "totalResults": jsonSchema.length,
+        "Resources": jsonSchema
+    }
+
+    res.json(jsonResult);
+});
+
+app.get('/scim/v2/Schemas/:id', async (req, res) => {
+    out.log("INFO", "GET", "Got request: " + req.url);
+
+    const attrId = req.params.id;
+    const jsonSchema = JSON.parse(fs.readFileSync('./scim/schemas.json', 'utf8'));
+
+    const attributeSpec = jsonSchema.find(obj => obj.id===attrId);
+
+    res.json(attributeSpec);
 });
 
 // --- User Resource Endpoints ---
-
-// 1. Get All Users
 app.get('/scim/v2/Users', async (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.url);
     
@@ -85,7 +123,6 @@ app.get('/scim/v2/Users', async (req, res) => {
     }
 });
 
-// 2. Get User by ID
 app.get('/scim/v2/Users/:id', async (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.url);
     
@@ -116,7 +153,6 @@ app.get('/scim/v2/Users/:id', async (req, res) => {
 
 // --- Group Resource Endpoints ---
 
-// 1. Get All Groups
 app.get('/scim/v2/Groups', async (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.url);
     
@@ -145,7 +181,7 @@ app.get('/scim/v2/Groups', async (req, res) => {
     }
 });
 
-// 2. Get Group by ID
+
 app.get('/scim/v2/Groups/:id', async (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.url);
     

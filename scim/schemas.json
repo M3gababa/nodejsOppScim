@@ -1,346 +1,484 @@
-{
-    "schemas": [
-        "urn:ietf:params:scim:api:messages:2.0:ListResponse"
-    ],
-    "totalResults": 14,
-    "startIndex": 0,
-    "itemsPerPage": 14,
-    "Resources": [
-        {
-            "id": "urn:okta:bduveyoie_banner_2:2.0:user:custom:dn",
-            "meta": {
-                "resourceType": "Schema",
-                "created": "",
-                "lastModified": "",
-                "location": "/v2/Schemas/urn:okta:bduveyoie_banner_2:2.0:user:custom:dn"
-            },
-            "name": "dn",
-            "description": "dn",
-            "attributes": [
-                {
-                    "name": "dn",
-                    "type": "string",
-                    "multiValued": false,
-                    "description": "dn",
-                    "required": false,
-                    "caseExact": false,
-                    "mutability": "readWrite",
-                    "returned": "default",
-                    "uniqueness": "none"
-                }
-            ]
+[
+    {
+        "schemas": [
+            "urn:ietf:params:scim:schemas:core:2.0:Schema"
+        ],
+        "id": "urn:ietf:params:scim:schemas:core:2.0:User",
+        "meta": {
+            "resourceType": "Schema",
+            "created": "2001-01-01T00:00:00+00:00",
+            "lastModified": "2001-01-01T00:00:00+00:00",
+            "version": "W/\"ed0a053351a12f1d578e255508fd8072479445dc\"",
+            "location": "https://api.scim.dev/scim/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:User"
         },
-        {
-            "id": "urn:okta:bduveyoie_banner_2:2.0:user:custom:description",
-            "meta": {
-                "resourceType": "Schema",
-                "created": "",
-                "lastModified": "",
-                "location": "/v2/Schemas/urn:okta:bduveyoie_banner_2:2.0:user:custom:description"
+        "name": "User",
+        "attributes": [
+            {
+                "name": "userName",
+                "type": "string",
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "server",
+                "required": true,
+                "multiValued": false,
+                "caseExact": false
             },
-            "name": "description",
-            "description": "description",
-            "attributes": [
-                {
-                    "name": "description",
-                    "type": "string",
-                    "multiValued": false,
-                    "description": "description",
-                    "required": false,
-                    "caseExact": false,
-                    "mutability": "readWrite",
-                    "returned": "default",
-                    "uniqueness": "none"
-                }
-            ]
+            {
+                "name": "externalId",
+                "type": "string",
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "server",
+                "required": false,
+                "multiValued": false,
+                "caseExact": false
+            },
+            {
+                "name": "name",
+                "type": "complex",
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "server",
+                "required": false,
+                "multiValued": false,
+                "caseExact": false,
+                "subAttributes": [
+                    {
+                        "name": "formatted",
+                        "type": "string",
+                        "mutability": "readWrite",
+                        "returned": "default",
+                        "uniqueness": "server",
+                        "required": false,
+                        "multiValued": false,
+                        "caseExact": false
+                    },
+                    {
+                        "name": "familyName",
+                        "type": "string",
+                        "mutability": "readWrite",
+                        "returned": "default",
+                        "uniqueness": "server",
+                        "required": false,
+                        "multiValued": false,
+                        "caseExact": false
+                    },
+                    {
+                        "name": "givenName",
+                        "type": "string",
+                        "mutability": "readWrite",
+                        "returned": "default",
+                        "uniqueness": "server",
+                        "required": false,
+                        "multiValued": false,
+                        "caseExact": false
+                    }
+                ]
+            },
+            {
+                "name": "active",
+                "type": "boolean",
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "server",
+                "required": false,
+                "multiValued": false,
+                "caseExact": false
+            },
+            {
+                "name": "password",
+                "type": "string",
+                "mutability": "readWrite",
+                "returned": "never",
+                "uniqueness": "server",
+                "required": false,
+                "multiValued": false,
+                "caseExact": false
+            },
+            {
+                "name": "emails",
+                "type": "complex",
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "server",
+                "required": true,
+                "multiValued": true,
+                "caseExact": false,
+                "subAttributes": [
+                    {
+                        "name": "value",
+                        "type": "string",
+                        "mutability": "readWrite",
+                        "returned": "default",
+                        "uniqueness": "server",
+                        "required": true,
+                        "multiValued": false,
+                        "caseExact": false
+                    },
+                    {
+                        "name": "type",
+                        "type": "string",
+                        "mutability": "readWrite",
+                        "returned": "default",
+                        "uniqueness": "server",
+                        "required": false,
+                        "multiValued": false,
+                        "caseExact": false
+                    },
+                    {
+                        "name": "primary",
+                        "type": "string",
+                        "mutability": "readWrite",
+                        "returned": "default",
+                        "uniqueness": "server",
+                        "required": false,
+                        "multiValued": false,
+                        "caseExact": false
+                    }
+                ]
+            },
+            {
+                "name": "groups",
+                "type": "string",
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "server",
+                "required": false,
+                "multiValued": true,
+                "caseExact": false,
+                "subAttributes": [
+                    {
+                        "name": "value",
+                        "type": "string",
+                        "mutability": "readWrite",
+                        "returned": "default",
+                        "uniqueness": "server",
+                        "required": false,
+                        "multiValued": false,
+                        "caseExact": false
+                    },
+                    {
+                        "name": "$ref",
+                        "type": "string",
+                        "mutability": "readWrite",
+                        "returned": "default",
+                        "uniqueness": "server",
+                        "required": false,
+                        "multiValued": false,
+                        "caseExact": false
+                    },
+                    {
+                        "name": "display",
+                        "type": "string",
+                        "mutability": "readWrite",
+                        "returned": "default",
+                        "uniqueness": "server",
+                        "required": false,
+                        "multiValued": false,
+                        "caseExact": false
+                    }
+                ]
+            },
+            {
+                "name": "roles",
+                "type": "string",
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "server",
+                "required": false,
+                "multiValued": true,
+                "caseExact": false,
+                "subAttributes": [
+                    {
+                        "name": "value",
+                        "type": "string",
+                        "mutability": "readWrite",
+                        "returned": "default",
+                        "uniqueness": "server",
+                        "required": true,
+                        "multiValued": false,
+                        "caseExact": false
+                    },
+                    {
+                        "name": "display",
+                        "type": "string",
+                        "mutability": "readWrite",
+                        "returned": "default",
+                        "uniqueness": "server",
+                        "required": false,
+                        "multiValued": false,
+                        "caseExact": false
+                    },
+                    {
+                        "name": "type",
+                        "type": "string",
+                        "mutability": "readWrite",
+                        "returned": "default",
+                        "uniqueness": "server",
+                        "required": false,
+                        "multiValued": false,
+                        "caseExact": false
+                    },
+                    {
+                        "name": "primary",
+                        "type": "boolean",
+                        "mutability": "readWrite",
+                        "returned": "default",
+                        "uniqueness": "server",
+                        "required": false,
+                        "multiValued": false,
+                        "caseExact": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "schemas": [
+            "urn:ietf:params:scim:schemas:core:2.0:Schema"
+        ],
+        "id": "urn:ietf:params:scim:schemas:core:2.0:Group",
+        "meta": {
+            "resourceType": "Schema",
+            "created": "2001-01-01T00:00:00+00:00",
+            "lastModified": "2001-01-01T00:00:00+00:00",
+            "version": "W/\"ed0a053351a12f1d578e255508fd8072479445dc\"",
+            "location": "https://api.scim.dev/scim/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:Group"
         },
-        {
-            "id": "urn:okta:bduveyoie_banner_2:2.0:user:custom:adlogin",
-            "meta": {
-                "resourceType": "Schema",
-                "created": "",
-                "lastModified": "",
-                "location": "/v2/Schemas/urn:okta:bduveyoie_banner_2:2.0:user:custom:adlogin"
+        "name": "Group",
+        "attributes": [
+            {
+                "name": "displayName",
+                "type": "string",
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "server",
+                "required": true,
+                "multiValued": false,
+                "caseExact": false
             },
-            "name": "adlogin",
-            "description": "adlogin",
-            "attributes": [
-                {
-                    "name": "adlogin",
-                    "type": "string",
-                    "multiValued": false,
-                    "description": "adlogin",
-                    "required": false,
-                    "caseExact": false,
-                    "mutability": "readWrite",
-                    "returned": "default",
-                    "uniqueness": "none"
-                }
-            ]
+            {
+                "name": "externalId",
+                "type": "string",
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "server",
+                "required": false,
+                "multiValued": false,
+                "caseExact": false
+            },
+            {
+                "name": "members",
+                "type": "string",
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "server",
+                "required": false,
+                "multiValued": true,
+                "caseExact": false,
+                "subAttributes": [
+                    {
+                        "name": "value",
+                        "type": "string",
+                        "mutability": "readWrite",
+                        "returned": "default",
+                        "uniqueness": "server",
+                        "required": true,
+                        "multiValued": false,
+                        "caseExact": false
+                    },
+                    {
+                        "name": "$ref",
+                        "type": "string",
+                        "mutability": "readWrite",
+                        "returned": "default",
+                        "uniqueness": "server",
+                        "required": false,
+                        "multiValued": false,
+                        "caseExact": false
+                    },
+                    {
+                        "name": "display",
+                        "type": "string",
+                        "mutability": "readWrite",
+                        "returned": "default",
+                        "uniqueness": "server",
+                        "required": false,
+                        "multiValued": false,
+                        "caseExact": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "schemas": [
+            "urn:ietf:params:scim:schemas:core:2.0:Schema"
+        ],
+        "id": "urn:okta:bduveyoie_banner_2:2.0:user:custom",
+        "meta": {
+            "resourceType": "Schema",
+            "created": "2001-01-01T00:00:00+00:00",
+            "lastModified": "2001-01-01T00:00:00+00:00",
+            "version": "W/\"ed0a053351a12f1d578e255508fd8072479445dc\"",
+            "location": "https://api.scim.dev/scim/v2/Schemas/urn:okta:bduveyoie_banner_2:2.0:user:custom"
         },
-        {
-            "id": "urn:okta:bduveyoie_banner_2:2.0:user:custom:bid",
-            "meta": {
-                "resourceType": "Schema",
-                "created": "",
-                "lastModified": "",
-                "location": "/v2/Schemas/urn:okta:bduveyoie_banner_2:2.0:user:custom:bid"
+        "name": "Custom",
+        "attributes": [
+            {
+                "name": "dn",
+                "type": "string",
+                "multiValued": false,
+                "description": "dn",
+                "required": false,
+                "caseExact": false,
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "none"
             },
-            "name": "bid",
-            "description": "bid",
-            "attributes": [
-                {
-                    "name": "bid",
-                    "type": "string",
-                    "multiValued": false,
-                    "description": "bid",
-                    "required": false,
-                    "caseExact": false,
-                    "mutability": "readWrite",
-                    "returned": "default",
-                    "uniqueness": "none"
-                }
-            ]
-        },
-        {
-            "id": "urn:okta:bduveyoie_banner_2:2.0:user:custom:campus",
-            "meta": {
-                "resourceType": "Schema",
-                "created": "",
-                "lastModified": "",
-                "location": "/v2/Schemas/urn:okta:bduveyoie_banner_2:2.0:user:custom:campus"
+            {
+                "name": "description",
+                "type": "string",
+                "multiValued": false,
+                "description": "description",
+                "required": false,
+                "caseExact": false,
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "none"
             },
-            "name": "campus",
-            "description": "campus",
-            "attributes": [
-                {
-                    "name": "campus",
-                    "type": "string",
-                    "multiValued": false,
-                    "description": "campus",
-                    "required": false,
-                    "caseExact": false,
-                    "mutability": "readWrite",
-                    "returned": "default",
-                    "uniqueness": "none"
-                }
-            ]
-        },
-        {
-            "id": "urn:okta:bduveyoie_banner_2:2.0:user:custom:csn",
-            "meta": {
-                "resourceType": "Schema",
-                "created": "",
-                "lastModified": "",
-                "location": "/v2/Schemas/urn:okta:bduveyoie_banner_2:2.0:user:custom:csn"
+            {
+                "name": "adlogin",
+                "type": "string",
+                "multiValued": false,
+                "description": "adlogin",
+                "required": false,
+                "caseExact": false,
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "none"
             },
-            "name": "csn",
-            "description": "csn",
-            "attributes": [
-                {
-                    "name": "csn",
-                    "type": "string",
-                    "multiValued": false,
-                    "description": "csn",
-                    "required": false,
-                    "caseExact": false,
-                    "mutability": "readWrite",
-                    "returned": "default",
-                    "uniqueness": "none"
-                }
-            ]
-        },
-        {
-            "id": "urn:okta:bduveyoie_banner_2:2.0:user:custom:mail",
-            "meta": {
-                "resourceType": "Schema",
-                "created": "",
-                "lastModified": "",
-                "location": "/v2/Schemas/urn:okta:bduveyoie_banner_2:2.0:user:custom:mail"
+            {
+                "name": "bid",
+                "type": "string",
+                "multiValued": false,
+                "description": "bid",
+                "required": false,
+                "caseExact": false,
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "none"
             },
-            "name": "mail",
-            "description": "mail",
-            "attributes": [
-                {
-                    "name": "mail",
-                    "type": "string",
-                    "multiValued": false,
-                    "description": "mail",
-                    "required": false,
-                    "caseExact": false,
-                    "mutability": "readWrite",
-                    "returned": "default",
-                    "uniqueness": "none"
-                }
-            ]
-        },
-        {
-            "id": "urn:okta:bduveyoie_banner_2:2.0:user:custom:mfaactive",
-            "meta": {
-                "resourceType": "Schema",
-                "created": "",
-                "lastModified": "",
-                "location": "/v2/Schemas/urn:okta:bduveyoie_banner_2:2.0:user:custom:mfaactive"
+            {
+                "name": "campus",
+                "type": "string",
+                "multiValued": false,
+                "description": "campus",
+                "required": false,
+                "caseExact": false,
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "none"
             },
-            "name": "mfaactive",
-            "description": "mfaactive",
-            "attributes": [
-                {
-                    "name": "mfaactive",
-                    "type": "string",
-                    "multiValued": false,
-                    "description": "mfaactive",
-                    "required": false,
-                    "caseExact": false,
-                    "mutability": "readWrite",
-                    "returned": "default",
-                    "uniqueness": "none"
-                }
-            ]
-        },
-        {
-            "id": "urn:okta:bduveyoie_banner_2:2.0:user:custom:nomnaiss",
-            "meta": {
-                "resourceType": "Schema",
-                "created": "",
-                "lastModified": "",
-                "location": "/v2/Schemas/urn:okta:bduveyoie_banner_2:2.0:user:custom:nomnaiss"
+            {
+                "name": "csn",
+                "type": "string",
+                "multiValued": false,
+                "description": "csn",
+                "required": false,
+                "caseExact": false,
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "none"
             },
-            "name": "nomnaiss",
-            "description": "nomnaiss",
-            "attributes": [
-                {
-                    "name": "nomnaiss",
-                    "type": "string",
-                    "multiValued": false,
-                    "description": "nomnaiss",
-                    "required": false,
-                    "caseExact": false,
-                    "mutability": "readWrite",
-                    "returned": "default",
-                    "uniqueness": "none"
-                }
-            ]
-        },
-        {
-            "id": "urn:okta:bduveyoie_banner_2:2.0:user:custom:prenomnaiss",
-            "meta": {
-                "resourceType": "Schema",
-                "created": "",
-                "lastModified": "",
-                "location": "/v2/Schemas/urn:okta:bduveyoie_banner_2:2.0:user:custom:prenomnaiss"
+            {
+                "name": "mail",
+                "type": "string",
+                "multiValued": false,
+                "description": "mail",
+                "required": false,
+                "caseExact": false,
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "none"
             },
-            "name": "prenomnaiss",
-            "description": "prenomnaiss",
-            "attributes": [
-                {
-                    "name": "prenomnaiss",
-                    "type": "string",
-                    "multiValued": false,
-                    "description": "prenomnaiss",
-                    "required": false,
-                    "caseExact": false,
-                    "mutability": "readWrite",
-                    "returned": "default",
-                    "uniqueness": "none"
-                }
-            ]
-        },
-        {
-            "id": "urn:okta:bduveyoie_banner_2:2.0:user:custom:pegaseid",
-            "meta": {
-                "resourceType": "Schema",
-                "created": "",
-                "lastModified": "",
-                "location": "/v2/Schemas/urn:okta:bduveyoie_banner_2:2.0:user:custom:pegaseid"
+            {
+                "name": "mfaactive",
+                "type": "string",
+                "multiValued": false,
+                "description": "mfaactive",
+                "required": false,
+                "caseExact": false,
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "none"
             },
-            "name": "pegaseid",
-            "description": "pegaseid",
-            "attributes": [
-                {
-                    "name": "pegaseid",
-                    "type": "string",
-                    "multiValued": false,
-                    "description": "pegaseid",
-                    "required": false,
-                    "caseExact": false,
-                    "mutability": "readWrite",
-                    "returned": "default",
-                    "uniqueness": "none"
-                }
-            ]
-        },
-        {
-            "id": "urn:okta:bduveyoie_banner_2:2.0:user:custom:initials",
-            "meta": {
-                "resourceType": "Schema",
-                "created": "",
-                "lastModified": "",
-                "location": "/v2/Schemas/urn:okta:bduveyoie_banner_2:2.0:user:custom:initials"
+            {
+                "name": "nomnaiss",
+                "type": "string",
+                "multiValued": false,
+                "description": "nomnaiss",
+                "required": false,
+                "caseExact": false,
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "none"
             },
-            "name": "initials",
-            "description": "initials",
-            "attributes": [
-                {
-                    "name": "initials",
-                    "type": "string",
-                    "multiValued": false,
-                    "description": "initials",
-                    "required": false,
-                    "caseExact": false,
-                    "mutability": "readWrite",
-                    "returned": "default",
-                    "uniqueness": "none"
-                }
-            ]
-        },
-        {
-            "id": "urn:okta:bduveyoie_banner_2:2.0:user:custom:ipphone",
-            "meta": {
-                "resourceType": "Schema",
-                "created": "",
-                "lastModified": "",
-                "location": "/v2/Schemas/urn:okta:bduveyoie_banner_2:2.0:user:custom:ipphone"
+            {
+                "name": "prenomnaiss",
+                "type": "string",
+                "multiValued": false,
+                "description": "prenomnaiss",
+                "required": false,
+                "caseExact": false,
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "none"
             },
-            "name": "ipphone",
-            "description": "ipphone",
-            "attributes": [
-                {
-                    "name": "ipphone",
-                    "type": "string",
-                    "multiValued": false,
-                    "description": "ipphone",
-                    "required": false,
-                    "caseExact": false,
-                    "mutability": "readWrite",
-                    "returned": "default",
-                    "uniqueness": "none"
-                }
-            ]
-        },
-        {
-            "id": "urn:okta:bduveyoie_banner_2:2.0:user:custom:personalmail",
-            "meta": {
-                "resourceType": "Schema",
-                "created": "",
-                "lastModified": "",
-                "location": "/v2/Schemas/urn:okta:bduveyoie_banner_2:2.0:user:custom:personalmail"
+            {
+                "name": "pegaseid",
+                "type": "string",
+                "multiValued": false,
+                "description": "pegaseid",
+                "required": false,
+                "caseExact": false,
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "none"
             },
-            "name": "personalmail",
-            "description": "personalmail",
-            "attributes": [
-                {
-                    "name": "personalmail",
-                    "type": "string",
-                    "multiValued": false,
-                    "description": "personalmail",
-                    "required": false,
-                    "caseExact": false,
-                    "mutability": "readWrite",
-                    "returned": "default",
-                    "uniqueness": "none"
-                }
-            ]
-        }
-    ]
-}
+            {
+                "name": "initials",
+                "type": "string",
+                "multiValued": false,
+                "description": "initials",
+                "required": false,
+                "caseExact": false,
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "none"
+            },
+            {
+                "name": "ipphone",
+                "type": "string",
+                "multiValued": false,
+                "description": "ipphone",
+                "required": false,
+                "caseExact": false,
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "none"
+            },
+            {
+                "name": "personalmail",
+                "type": "string",
+                "multiValued": false,
+                "description": "personalmail",
+                "required": false,
+                "caseExact": false,
+                "mutability": "readWrite",
+                "returned": "default",
+                "uniqueness": "none"
+            }
+        ]
+    }
+]

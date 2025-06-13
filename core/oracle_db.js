@@ -14,6 +14,8 @@ function base64ToString(base64String) {
 async function getConnection() {
   try {
     const config = JSON.parse(fs.readFileSync("dbconfig.json", "utf8"));
+    // const libDir = "/usr/lib/oracle/11.1";
+    // oracledb.initOracleClient({ libDir: libDir });
     return await oracledb.getConnection({
       user: config.user,
       password: base64ToString(config.password),

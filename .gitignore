@@ -7,3 +7,6 @@ dbconfig.json
 logs.txt
 
 package-lock.json
+
+*.pem
+*.p12

@@ -2,6 +2,16 @@
 
 :no_entry: :no_entry: :no_entry: This connector is not usable for PRODUCTION. Please use it only for TEST :no_entry: :no_entry: :no_entry: 
 
+### Work in Progress
+
+| Id | Name | Modifications | Priority | Status |
+|---|---|---|---|---|
+| 20250613-1 | Add support for pagination | /core/scimRoutes.js | High | :memo: |
+| 20250613-2 | Clean Up schemas with standard and complex attributes | /core/scim_utils.js<br>/scim/schemas.json | Low | :memo: |
+| 20250613-3 | Add support for entitlements | /core/scim_utils.js<br>/core/scimRoutes.js<br>/scim/schemas.json<br>/scim/resourceTypes.json<br>/scim/serviceProviderConfig.json | Medium | :memo: |
+| 20250613-4 | Update architecture, add documentation for basic SCIM | /README.md | Low | :memo: |
+| 20250613-5 | Update authentication (switch to OAuth2.0) | /core/scimRoutes.js | High | :memo: |
+
 ### Overview
 
 This is a SCIMv2 connector implementation working with an Oracle database. It's aim to be connected to Okta through an Okta On-Premise Provisioning (OPP) agent.

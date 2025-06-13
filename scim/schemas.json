@@ -321,7 +321,7 @@
             "created": "2001-01-01T00:00:00+00:00",
             "lastModified": "2001-01-01T00:00:00+00:00",
             "version": "W/\"ed0a053351a12f1d578e255508fd8072479445dc\"",
-            "location": "https://api.scim.dev/scim/v2/Schemas/urn:okta:bduveyoie_banner_2:2.0:user:custom"
+            "location": "http://localhost:3000/scim/v2/Schemas/urn:okta:scim:2.0:user:custom"
         },
         "name": "Custom",
         "attributes": [

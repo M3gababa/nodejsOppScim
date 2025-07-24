@@ -5,6 +5,9 @@
   "main": "SCIMServer.js",
   "author": "Baptiste Duvey",
   "license": "ISC",
+  "scripts": {
+    "start": "node SCIMServer.js"
+  },
   "dependencies": {
     "basic-auth": "^2.0.1",
     "body-parser": "^1.20.1",

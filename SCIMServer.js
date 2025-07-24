@@ -11,7 +11,7 @@ initSQL();
 
 // Now the app
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
@@ -36,5 +36,5 @@ app.use('/scim/v2', scimRoutes);
 
 app.listen(port, () => {
     out.log("INFO", "START", "Service Started");
-    console.log(`SCIM 2.0 Server listening on port ${port} with Oracle DB`);
+    console.log(`SCIM 2.0 Server listening on port ${port}`);
 });

@@ -3,8 +3,8 @@ const auth = require('basic-auth');
 //  Define your user credentials (in a real application, use a database)
 // TODO : Clean Up
 const creds = {
-    'login': 'scimUser',
-    'pwd': 'P@ssw0rd123!',
+    'login': process.env.USER || 'scimUser',
+    'pwd': process.env.PASSWORD || 'P@ssw0rd123!',
 };
 
 const authenticate = (req, res, next) => {

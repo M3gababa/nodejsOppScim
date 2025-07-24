@@ -6,16 +6,17 @@
   "author": "Baptiste Duvey",
   "license": "ISC",
   "scripts": {
-    "start": "node SCIMServer.js"
+    "dev": "node SCIMServer.js",
+    "start": "node --env-file=.env SCIMServer.js"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.52.1",
     "basic-auth": "^2.0.1",
     "body-parser": "^1.20.1",
     "express": "^4.18.2",
     "fs": "0.0.1-security",
     "helmet": "^8.1.0",
     "moment": "^2.30.1",
-    "oracledb": "^6.8.0",
     "pg": "^8.14.1",
     "sqlite3": "^5.1.7",
     "url": "^0.11.0"

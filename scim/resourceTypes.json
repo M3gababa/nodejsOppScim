@@ -1,21 +1,5 @@
 [
     {
-        "id": "Group",
-        "meta": {
-            "resourceType": "ResourceType",
-            "created": "2023-07-17T15:26:04",
-            "lastModified": "2023-07-17T15:26:04",
-            "location": "https://example.com/v2/ResourceTypes/Group"
-        },
-        "schemas": [
-            "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
-        ],
-        "name": "Group",
-        "description": "Group resource",
-        "schema": "urn:ietf:params:scim:schemas:core:2.0:Group",
-        "endpoint": "/Groups"
-    },
-    {
         "id": "User",
         "meta": {
             "resourceType": "ResourceType",
@@ -33,8 +17,44 @@
             {
                 "schema": "urn:okta:scim:2.0:user:custom",
                 "required": false
+            },
+            {
+                "schema": "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User",
+                "required": false
             }
         ],
         "endpoint": "/Users"
+    },
+    {
+        "id": "Group",
+        "meta": {
+            "resourceType": "ResourceType",
+            "created": "2023-07-17T15:26:04",
+            "lastModified": "2023-07-17T15:26:04",
+            "location": "https://example.com/v2/ResourceTypes/Group"
+        },
+        "schemas": [
+            "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+        ],
+        "name": "Group",
+        "description": "Group resource",
+        "schema": "urn:ietf:params:scim:schemas:core:2.0:Group",
+        "endpoint": "/Groups"
+    },
+    {
+        "id": "Entitlement",
+        "meta": {
+            "resourceType": "ResourceType",
+            "created": "2023-07-17T15:26:04",
+            "lastModified": "2023-07-17T15:26:04",
+            "location": "https://example.com/v2/ResourceTypes/Entitlement"
+        },
+        "schemas": [
+            "urn:ietf:params:scim:schemas:core:2.0:ResourceType"
+        ],
+        "name": "Entitlement",
+        "description": "Entitlement resource",
+        "schema": "urn:okta:scim:schemas:core:1.0:Entitlement",
+        "endpoint": "/Entitlements"
     }
 ]

@@ -1,7 +1,8 @@
 {
     "schemas":[
         "urn:scim:schemas:core:2.0",
-        "urn:okta:schemas:scim:providerconfig:2.0"
+        "urn:okta:schemas:scim:providerconfig:2.0",
+        "urn:ietf:params:scim:schemas:core:2.0:ServiceProviderConfig"
     ],
     "documentationUrl":"/",
     "patch":{

@@ -1,7 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 const out = require('./core/logs');
 
+global.appRoot = path.resolve(__dirname);
+
+// Sqlite
+const initSQL = require('./core/initDatabase');
+initSQL();
+
+// Now the app
 const app = express();
 const port = 3000;
 
@@ -23,7 +31,7 @@ app.get('/scim/', (req, res) => {
 });
 
 // --- SCIM Endpoints ---
-const scimRoutes = require('./core/scimRoutes');
+const scimRoutes = require('./core/routes/scimRoutes');
 app.use('/scim/v2', scimRoutes);
 
 app.listen(port, () => {

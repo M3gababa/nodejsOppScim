@@ -1,13 +1,9 @@
-node_modules/*
-
 .vscode/*
 
-dbconfig.json
-
-logs.txt
-
 package-lock.json
+node_modules/*
 
-*.pem
-*.p12
 *.db
+dbconfig.json
+logs.txt
+.env

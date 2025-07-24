@@ -10,3 +10,4 @@ package-lock.json
 
 *.pem
 *.p12
+*.db

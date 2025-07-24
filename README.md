@@ -1,33 +1,31 @@
 # SCIMv2 Connector - Database
 
-:no_entry: :no_entry: :no_entry: This connector is not usable for PRODUCTION. Please use it only for TEST :no_entry: :no_entry: :no_entry: 
+<p align="center">
+	:no_entry: :no_entry: :no_entry: This connector is not usable for PRODUCTION. Please use it only for TEST :no_entry: :no_entry: :no_entry: 
+</p>
 
 ### Work in Progress
 
 | Id | Name | Modifications | Priority | Status |
 |---|---|---|---|---|
 | 250613-1 | Add support for pagination | /core/scimRoutes.js | High | :memo: |
-| 250613-2 | Clean Up schemas with standard and complex attributes | /core/scim_utils.js<br>/scim/schemas.json | Low | :memo: |
-| 250613-3 | Add support for entitlements | /core/scim_utils.js<br>/core/scimRoutes.js<br>/scim/schemas.json<br>/scim/resourceTypes.json<br>/scim/serviceProviderConfig.json | Medium | :memo: |
 | 250613-4 | Update architecture, add documentation for basic SCIM | /README.md | Low | :memo: |
-| 250613-5 | Update authentication (switch to OAuth2.0) | /core/scimRoutes.js | High | :memo: |
+| 250613-5 | Update authentication (switch to OAuth2.0) | /utils/authn_utils.js | High | :memo: |
+| 250724-1 | Add functions to push users, groups and entitlements | /core/routes/* | Low | :memo: |
+| 250724-2 | Secure Basic Authentication in place | /core/routes/* | Low | :memo: |
 
 ### Overview
 
-This is a SCIMv2 connector implementation working with an Oracle database. It's aim to be connected to Okta through an Okta On-Premise Provisioning (OPP) agent.
+This is a SCIMv2 connector implementation working with an Sqlite3 local database. It's aim to be connected to Okta either using the "Governance with SCIM 2.0" application template or  through an Okta On-Premise Provisioning (OPP) agent depending on the architecture in place.
 
 It supports only the following features : 
  - IMPORT_NEW_USERS (Endpoints: /Users & /Groups)
  - IMPORT_PROFILE_UPDATES (Endpoints: /Users & /Groups)
  - IMPORT_USER_SCHEMA (Endpoints: /ServiceProviderConfig, /ResourceTypes, /Schemas)
 
-
 :rotating_light: In order for Okta to leverage the SCIMv2 standard, the SCIM connector base URL has to ends with /v2/.
 
-
-![Architecture](/Okta_SCIMv2_Oracle.png "Architecture")
-
-Refer to Okta online documentation for more [here](https://help.okta.com/en-us/content/topics/provisioning/opp/opp-create-scim-connectors.htm).
+![Architecture](/Okta_SCIMv2.png "Architecture")
 
 ### Deployment Guide (CentOS)
 
@@ -60,22 +58,7 @@ cd /var/www/scim
 npm install
 ```
 
-5. Build the database connection config file
-```bash
-cd /var/www/scim
-vim dbconfig.json
-```
-
-The file has to contain the following elements. :warning: Password is simply encoded in base64 : this is only for dev purpose, on PROD you’ll have to add security layer.
-```json
-{
-	"user": "<<login>>",
-	"password": "<<base64pwd>>", 
-	"connectString": "<<IP>>:<<PORT>>/<<DBNAME>>"
-}
-```
-
-6. Systemd Service Configuration
+5. Systemd Service Configuration
 
 Initiate the system file required for the linux service to run automatically.
 ```bash
@@ -99,14 +82,14 @@ Environment=NODE_ENV=devlopment
 WantedBy=multi-user.target
 ```
 
-7. Enable and Start the Service
+6. Enable and Start the Service
 ```bash
 sudo systemctl enable scim.service
 sudo systemctl start scim.service
 sudo systemctl status scim.service
 ```
 
-8. Firewall Configuration (If Necessary)
+7. Firewall Configuration (If Necessary)
 ```bash
 sudo firewall-cmd --permanent --add-port=3000/tcp
 sudo firewall-cmd --reload

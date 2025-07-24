@@ -66,7 +66,7 @@ let userRoutes;
 let groupRoutes;
 let entitlementRoutes;
 
-switch(process.env.type) {
+switch(process.env.TYPE) {
     case "ORACLE":
         userRoutes = require('./oracle/userRoutes');
         groupRoutes = require('./oracle/groupRoutes');

@@ -165,7 +165,7 @@
                 "name" : "locale",
                 "type" : "string",
                 "multiValued" : false,
-                "description" : "Used to indicate the User's default location for purposes of localizing items such as currency, date time format, or numerical representations.",
+                "description" : "Used to indicate the User's default location for https://example.compurposes of localizing items such as currency, date time format, or numerical representations.",
                 "required" : false,
                 "caseExact" : false,
                 "mutability" : "readWrite",
@@ -646,7 +646,7 @@
         ],
         "meta" : {
             "resourceType" : "Schema",
-            "location" : "/scim/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:User"
+            "location" : "https://example.com/scim/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:User"
         }
     },
     {
@@ -742,7 +742,7 @@
         ],
         "meta" : {
             "resourceType" : "Schema",
-            "location" : "/scim/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:Group"
+            "location" : "https://example.com/scim/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:Group"
         }
     },
     {
@@ -787,7 +787,7 @@
         ],
         "meta" : {
             "resourceType" : "Schema",
-            "location" : "/scim/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:Entitlement"
+            "location" : "https://example.com/scim/v2/Schemas/urn:ietf:params:scim:schemas:core:2.0:Entitlement"
         }
     },
     {
@@ -900,7 +900,7 @@
         ],
         "meta" : {
             "resourceType" : "Schema",
-            "location" : "/scim/v2/Schemas/urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"
+            "location" : "https://example.com/scim/v2/Schemas/urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"
         }
     }
 ]

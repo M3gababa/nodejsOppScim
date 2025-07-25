@@ -14,7 +14,7 @@ router.get('/ServiceProviderConfig', authenticate, (req, res) => {
 router.get('/ResourceTypes', authenticate, async (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.url);
     
-    const jsonResourceTypes = JSON.parse(fs.readFileSync('./scim/resourceTypes.json', 'utf8'));
+    const jsonResourceTypes = JSON.parse(fs.readFileSync('./scim/resourceTypes.json', 'utf8').replaceAll("https://example.com", urlRoot));
     const jsonResult = {
         "schemas": [
             "urn:ietf:params:scim:api:messages:2.0:ListResponse"
@@ -30,7 +30,7 @@ router.get('/ResourceTypes/:id', async (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.url);
     
     const attrId = req.params.id;
-    const jsonResourceTypes = JSON.parse(fs.readFileSync('./scim/resourceTypes.json', 'utf8'));
+    const jsonResourceTypes = JSON.parse(fs.readFileSync('./scim/resourceTypes.json', 'utf8').replaceAll("https://example.com", urlRoot));
     const resourceType = jsonResourceTypes.find(obj => obj.id===attrId);
     
     res.json(resourceType);
@@ -39,7 +39,7 @@ router.get('/ResourceTypes/:id', async (req, res) => {
 router.get('/Schemas', authenticate, async (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.url);
     
-    const jsonSchema = JSON.parse(fs.readFileSync('./scim/schemas.json', 'utf8'));
+    const jsonSchema = JSON.parse(fs.readFileSync('./scim/schemas.json', 'utf8').replaceAll("https://example.com", urlRoot));
     const jsonResult = {
         "schemas": [
             "urn:ietf:params:scim:api:messages:2.0:ListResponse"
@@ -55,7 +55,7 @@ router.get('/Schemas/:id', authenticate, async (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.url);
     
     const attrId = req.params.id;
-    const jsonSchema = JSON.parse(fs.readFileSync('./scim/schemas.json', 'utf8'));
+    const jsonSchema = JSON.parse(fs.readFileSync('./scim/schemas.json', 'utf8').replaceAll("https://example.com", urlRoot));
     
     const attributeSpec = jsonSchema.find(obj => obj.id===attrId);
     

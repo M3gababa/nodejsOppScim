@@ -38,14 +38,14 @@ function createScimUserFromTableRow(row, groups = [], entitlements = []) {
         groups: groups.map(group => JSON.parse(
             `{
                 "value":"${group.group_pk_id}",
-                "$ref":"https://api.scim.dev/scim/v2/Groups/${group.group_pk_id}",
+                "$ref":"${urlRoot}/scim/v2/Groups/${group.group_pk_id}",
                 "display":"${group.group_name}"
             }`
         )),
         entitlements: entitlements.map(entitlement => JSON.parse(
             `{
                 "value":"${entitlement.entitlement_pk_id}",
-                "$ref":"https://api.scim.dev/scim/v2/Entitlements/${entitlement.entitlement_pk_id}",
+                "$ref":"${urlRoot}/scim/v2/Entitlements/${entitlement.entitlement_pk_id}",
                 "type":"${entitlement.entitlement_type}",
                 "display":"${entitlement.entitlement_name}"
             }`
@@ -55,7 +55,7 @@ function createScimUserFromTableRow(row, groups = [], entitlements = []) {
         },
         meta: {
             resourceType: "User",
-            location: `/Users/${row.id}`
+            location: `${urlRoot}/Users/${row.id}`
         }
     };
 
@@ -71,13 +71,13 @@ function createScimGroupFromTableRow(row, members = []) {
             members: members.map(member => JSON.parse(
                 `{
                     "value":"${member.user_pk_id}",
-                    "$ref":"https://api.scim.dev/scim/v2/Users/${member.user_pk_id}",
+                    "$ref":"${urlRoot}/scim/v2/Users/${member.user_pk_id}",
                     "display":"${member.user_pk_email}"
                 }`
             )),
             meta: {
                 resourceType: "Group",
-                location: `/Groups/${row.id}`
+                location: `${urlRoot}/Groups/${row.id}`
             }
         };
 
@@ -94,13 +94,13 @@ function createScimEntitlementFromTableRow(row, members = []) {
             members: members.map(member => JSON.parse(
                 `{
                     "value":"${member.user_pk_id}",
-                    "$ref":"https://api.scim.dev/scim/v2/Users/${member.user_pk_id}",
+                    "$ref":"${urlRoot}/scim/v2/Users/${member.user_pk_id}",
                     "display":"${member.user_pk_email}"
                 }`
             )),
             meta: {
                 resourceType: "Entitlement",
-                location: `/Entitlements/${row.id}`
+                location: `${urlRoot}/Entitlements/${row.id}`
             }
         };
 

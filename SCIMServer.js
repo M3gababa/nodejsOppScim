@@ -3,8 +3,15 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const out = require('./core/logs');
 
-global.appRoot = path.resolve(__dirname);
 const port = process.env.PORT || 3000;
+const baseUrl = process.env.DOMAIN;
+
+console.log(baseUrl);
+
+global.appRoot = path.resolve(__dirname);
+global.urlRoot = baseUrl ? `https://${baseUrl}.vercel.app` : `http://localhost:${port}`;
+
+console.log(urlRoot);
 
 // Define express app
 const app = express();

@@ -16,7 +16,8 @@ router.get('', authenticate, async (req, res) => {
         const groups = [];
 
         for (const row of groupList) {
-            const members = [];
+            const memberList = await dbUtils.getUsersPerGroup(row.id);
+            const members = memberList.map(entry => ({ "user_pk_id": entry.users.id, "user_pk_email": entry.users.email }));
             groups.push(scimUtils.createScimGroupFromTableRow(row, members));
         };
         
@@ -43,7 +44,8 @@ router.get('/:id', authenticate, async (req, res) => {
         const groupResult = await dbUtils.getGroup(groupId);
 
         if (groupResult.length > 0) {
-            const members = [];
+            const memberList = await dbUtils.getUsersPerGroup(groupId);
+            const members = memberList.map(entry => ({ "user_pk_id": entry.users.id, "user_pk_email": entry.users.email }));
             const jsonResult = scimUtils.createScimGroupFromTableRow(groupResult[0], members);
             out.logToFile(jsonResult);
             res.json(jsonResult);

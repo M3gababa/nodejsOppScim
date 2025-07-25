@@ -24,11 +24,14 @@ function createScimUserFromTableRow(row, groups = [], entitlements = []) {
         addresses: [
             {
                 type: "work",
-                streetAddress: row.street,
-                locality: row.city,
-                postalCode: row.zipcode,
-                country: row.country,
-                formatted: row.street + ", " + row.zipcode + " " + row.city + ", " + row.country,
+                streetAddress: row.street || row.locations.street,
+                postalCode: row.zipcode || row.locations.zipcode,
+                locality: row.city || row.locations.city,
+                country: row.country || row.locations.country,
+                formatted: (row.street || row.locations.street) + ", " + 
+                    (row.zipcode || row.locations.zipcode) + " " + 
+                    (row.city || row.locations.city) + ", " + 
+                    (row.country || row.locations.country),
                 primary: true
             }
         ],

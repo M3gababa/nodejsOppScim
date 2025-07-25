@@ -17,8 +17,12 @@ router.get('/', authenticate, async (req, res) => {
         const users = [];
 
         for (const row of userList) {
-            const groups = [];
-            const entitlements = [];
+            const groupList = await dbUtils.getGroupsPerUser(row.id);
+            const groups = groupList.map(entry => ({ "group_pk_id": entry.groups.id, "group_name": entry.groups.display_name }));
+
+            const entltList = await dbUtils.getEntitlementsPerUser(row.id);
+            const entitlements = entltList.map(entry => ({ "entitlement_pk_id": entry.entitlements.id, "entitlement_type": entry.entitlements.type, "entitlement_name": entry.entitlements.display_name }));
+
             users.push(scimUtils.createScimUserFromTableRow(row, groups, entitlements));
         };
         
@@ -42,12 +46,14 @@ router.get('/:id', authenticate, async (req, res) => {
     const userId = req.params.id;
     try {
         const userResult = await dbUtils.getUser(userId);
-
-        console.log(userResult);
-                    
+                   
         if (userResult.length > 0) {
-            const groups = [];
-            const entitlements = [];
+            const groupList = await dbUtils.getGroupsPerUser(userId);
+            const groups = groupList.map(entry => ({ "group_pk_id": entry.groups.id, "group_name": entry.groups.display_name }));
+
+            const entltList = await dbUtils.getEntitlementsPerUser(userId);
+            const entitlements = entltList.map(entry => ({ "entitlement_pk_id": entry.entitlements.id, "entitlement_type": entry.entitlements.type, "entitlement_name": entry.entitlements.display_name }));
+
             const jsonResult = scimUtils.createScimUserFromTableRow(userResult[0], groups, entitlements);
             out.logToFile(jsonResult);
             res.json(jsonResult);

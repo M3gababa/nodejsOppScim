@@ -17,7 +17,8 @@ router.get('/', authenticate, async (req, res) => {
         const entitlements = [];
 
         for (const row of entltList) {
-            const members = [];
+            const memberList = await dbUtils.getUsersPerEntitlement(row.id);
+            const members = memberList.map(entry => ({ "user_pk_id": entry.users.id, "user_pk_email": entry.users.email }));
             entitlements.push(scimUtils.createScimEntitlementFromTableRow(row, members));
         };
         
@@ -41,10 +42,11 @@ router.get('/:id', authenticate, async (req, res) => {
     const entltId = req.params.id;
 
     try {        
-        const entltResult = await dbUtils.getEntitlements();
+        const entltResult = await dbUtils.getEntitlement(entltId);
 
         if (entltResult.length > 0) {
-            const members = [];
+            const memberList = await dbUtils.getUsersPerEntitlement(entltId);
+            const members = memberList.map(entry => ({ "user_pk_id": entry.users.id, "user_pk_email": entry.users.email }));
             const jsonResult = scimUtils.createScimEntitlementFromTableRow(entltResult[0], members);
             out.logToFile(jsonResult);
             res.json(jsonResult);

@@ -1,12 +1,12 @@
-const { createClient } = require('@supabase/supabase-js');
+const { createClient } = require("@supabase/supabase-js");
 
-const supabaseUrl = 'https://boyouzkixvhdiaqnsosc.supabase.co';
-const supabaseKey = 'sb_secret_OFES0QaYDooeF0oW01CVEg_OQVhA15_';
+const supabaseUrl = "https://boyouzkixvhdiaqnsosc.supabase.co";
+const supabaseKey = "sb_secret_OFES0QaYDooeF0oW01CVEg_OQVhA15_";
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const getUsers = async () => {
-  const { data, error } = await supabase.from("users").select("*");
+  const { data, error } = await supabase.from(`users`).select(`*, locations(*)`);
 
   if (error)
     throw new Error(error.message);
@@ -15,7 +15,9 @@ const getUsers = async () => {
 }
 
 const getUser = async (id) => {
-  const { data, error } = await supabase.from("users").select("*").eq("id", id);
+  const { data, error } = await supabase.from(`users`).select(`*, locations(*)`).eq(`id`, id);
+
+  console.log(data);
 
   if (error)
     throw new Error(error.message);
@@ -24,15 +26,16 @@ const getUser = async (id) => {
 }
 
 const getUsersPerGroup = async (groupId) => {
-  let { data, error } = await supabase
-  .from('group_membership')
-  .select(`
+  let { data, error } = await supabase.from(`group_membership`).select(`
+    id,
     user_id,
-    email,
+    group_id,
     users (
-      user_id
+      id,
+      user_id,
+      email
     )
-  `);
+  `).eq(`group_id`, groupId);
 
   if (error)
     throw new Error(error.message);
@@ -41,15 +44,16 @@ const getUsersPerGroup = async (groupId) => {
 }
 
 const getUsersPerEntitlement = async (entltId) => {
-  let { data, error } = await supabase
-  .from('group_membership')
-  .select(`
+  let { data, error } = await supabase.from(`entitlement_membership`).select(`
+    id,
     user_id,
-    email,
+    entltId,
     users (
-      user_id
+      id,
+      user_id,
+      email
     )
-  `);
+  `).eq(`entltId`, groupId);
 
   if (error)
     throw new Error(error.message);
@@ -58,7 +62,7 @@ const getUsersPerEntitlement = async (entltId) => {
 }
 
 const getGroups = async () => {
-  const { data, error } = await supabase.from("groups").select("*");
+  const { data, error } = await supabase.from(`groups`).select(`*`);
 
   if (error)
     throw new Error(error.message);
@@ -67,7 +71,7 @@ const getGroups = async () => {
 }
 
 const getGroup = async (id) => {
-  let { data, error } = await supabase.from('groups').select("*").eq('id', id);
+  let { data, error } = await supabase.from(`groups`).select(`*`).eq(`id`, id);
 
   if (error)
     throw new Error(error.message);
@@ -76,7 +80,7 @@ const getGroup = async (id) => {
 }
 
 const getGroupsPerUser = async (userId) => {
-  const { data, error } = await supabase.from("users").select("*");
+  const { data, error } = await supabase.from(`group_membership`).select(`id, user_id, group_id, groups(id, display_name, description)`).eq(`user_id`, userId);
 
   if (error)
     throw new Error(error.message);
@@ -85,7 +89,7 @@ const getGroupsPerUser = async (userId) => {
 }
 
 const getEntitlements = async () => {
-  const { data, error } = await supabase.from("entitlements").select("*");
+  const { data, error } = await supabase.from(`entitlements`).select(`*`);
 
   if (error)
     throw new Error(error.message);
@@ -94,7 +98,7 @@ const getEntitlements = async () => {
 }
 
 const getEntitlement = async (id) => {
-  const { data, error } = await supabase.from("users").select("*").eq("id", id);
+  const { data, error } = await supabase.from(`users`).select(`*`).eq(`id`, id);
 
   if (error)
     throw new Error(error.message);
@@ -103,7 +107,7 @@ const getEntitlement = async (id) => {
 }
 
 const getEntitlementsPerUser = async (userId) => {
-  const { data, error } = await supabase.from("users").select("*");
+  const { data, error } = await supabase.from(`entitlement_membership`).select(`id, user_id, entitlement_id, entitlements(id, display_name, type, description)`).eq(`user_id`, userId);
 
   if (error)
     throw new Error(error.message);

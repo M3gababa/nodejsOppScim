@@ -55,7 +55,7 @@ function createScimUserFromTableRow(row, groups = [], entitlements = []) {
         },
         meta: {
             resourceType: "User",
-            location: `${urlRoot}/Users/${row.id}`
+            location: `${urlRoot}/scim/v2/Users/${row.id}`
         }
     };
 
@@ -77,7 +77,7 @@ function createScimGroupFromTableRow(row, members = []) {
             )),
             meta: {
                 resourceType: "Group",
-                location: `${urlRoot}/Groups/${row.id}`
+                location: `${urlRoot}/scim/v2/Groups/${row.id}`
             }
         };
 
@@ -100,7 +100,7 @@ function createScimEntitlementFromTableRow(row, members = []) {
             )),
             meta: {
                 resourceType: "Entitlement",
-                location: `${urlRoot}/Entitlements/${row.id}`
+                location: `${urlRoot}/scim/v2/Entitlements/${row.id}`
             }
         };
 

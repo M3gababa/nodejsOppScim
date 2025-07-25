@@ -1,6 +1,6 @@
 {
   "name": "demo-scim-server",
-  "version": "0.1",
+  "version": "0.5",
   "description": "nodejs scim server reading BANNER db",
   "main": "SCIMServer.js",
   "author": "Baptiste Duvey",

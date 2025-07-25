@@ -17,8 +17,6 @@ const getUsers = async () => {
 const getUser = async (id) => {
   const { data, error } = await supabase.from(`users`).select(`*, locations(*)`).eq(`id`, id);
 
-  console.log(data);
-
   if (error)
     throw new Error(error.message);
 

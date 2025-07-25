@@ -23,7 +23,7 @@ app.use('/scim/v2', scimRoutes);
 
 // Undefined endpoints
 app.all('*', (req, res) => {
-    out.log("INFO", req.method, "Got request: " + req.url);
+    out.log("INFO", req.method, "Got request: " + req.originalUrl);
     res.status(404).send("<h1>Page not found ! </h1><br> <h2>We're sorry, we couldn't find the page you requested.</h2>");
 });
 

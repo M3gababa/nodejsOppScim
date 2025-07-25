@@ -8,7 +8,7 @@ var router = require('express').Router();
 
 // --- Entitlement Resource Endpoints ---
 router.get('/', authenticate, async (req, res) => {
-    out.log("INFO", "GET", "Got request: " + req.url);
+    out.log("INFO", "GET", "Got request: " + req.originalUrl);
     
     try {
         // TODO : Add Pagination
@@ -37,7 +37,7 @@ router.get('/', authenticate, async (req, res) => {
 });
 
 router.get('/:id', authenticate, async (req, res) => {
-    out.log("INFO", "GET", "Got request: " + req.url);
+    out.log("INFO", "GET", "Got request: " + req.originalUrl);
     
     const entltId = req.params.id;
 

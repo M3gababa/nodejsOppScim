@@ -8,7 +8,7 @@ var router = require('express').Router();
 
 // --- User Resource Endpoints ---
 router.get('/', authenticate, async (req, res) => {
-    out.log("INFO", "GET", "Got request: " + req.baseUrl);
+    out.log("INFO", "GET", "Got request: " + req.originalUrl);
 
     // TODO : Pagination
     try {
@@ -41,7 +41,7 @@ router.get('/', authenticate, async (req, res) => {
 });
 
 router.get('/:id', authenticate, async (req, res) => {
-    out.log("INFO", "GET", "Got request: " + req.url);
+    out.log("INFO", "GET", "Got request: " + req.originalUrl);
     
     const userId = req.params.id;
     try {

@@ -7,12 +7,12 @@ const { authenticate } = require('../utils/authn_utils');
 
 // --- Service Provider Config Endpoints ---
 router.get('/ServiceProviderConfig', authenticate, (req, res) => {
-    out.log("INFO", "GET", "Got request: " + req.url);
+    out.log("INFO", "GET", "Got request: " + req.originalUrl);
     res.json(JSON.parse(fs.readFileSync('./scim/serviceProviderConfig.json', 'utf8')));
 });
 
 router.get('/ResourceTypes', authenticate, async (req, res) => {
-    out.log("INFO", "GET", "Got request: " + req.url);
+    out.log("INFO", "GET", "Got request: " + req.originalUrl);
     
     const jsonResourceTypes = JSON.parse(fs.readFileSync('./scim/resourceTypes.json', 'utf8').replaceAll("https://example.com", urlRoot));
     const jsonResult = {
@@ -27,7 +27,7 @@ router.get('/ResourceTypes', authenticate, async (req, res) => {
 });
 
 router.get('/ResourceTypes/:id', async (req, res) => {
-    out.log("INFO", "GET", "Got request: " + req.url);
+    out.log("INFO", "GET", "Got request: " + req.originalUrl);
     
     const attrId = req.params.id;
     const jsonResourceTypes = JSON.parse(fs.readFileSync('./scim/resourceTypes.json', 'utf8').replaceAll("https://example.com", urlRoot));
@@ -37,7 +37,7 @@ router.get('/ResourceTypes/:id', async (req, res) => {
 });
 
 router.get('/Schemas', authenticate, async (req, res) => {
-    out.log("INFO", "GET", "Got request: " + req.url);
+    out.log("INFO", "GET", "Got request: " + req.originalUrl);
     
     const jsonSchema = JSON.parse(fs.readFileSync('./scim/schemas.json', 'utf8').replaceAll("https://example.com", urlRoot));
     const jsonResult = {
@@ -52,7 +52,7 @@ router.get('/Schemas', authenticate, async (req, res) => {
 });
 
 router.get('/Schemas/:id', authenticate, async (req, res) => {
-    out.log("INFO", "GET", "Got request: " + req.url);
+    out.log("INFO", "GET", "Got request: " + req.originalUrl);
     
     const attrId = req.params.id;
     const jsonSchema = JSON.parse(fs.readFileSync('./scim/schemas.json', 'utf8').replaceAll("https://example.com", urlRoot));

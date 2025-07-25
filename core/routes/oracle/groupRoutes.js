@@ -8,7 +8,7 @@ var router = require('express').Router();
 
 // --- Group Resource Endpoints ---
 router.get('', authenticate, async (req, res) => {
-    out.log("INFO", "GET", "Got request: " + req.url);
+    out.log("INFO", "GET", "Got request: " + req.originalUrl);
     
     let connection;
     try {
@@ -38,7 +38,7 @@ router.get('', authenticate, async (req, res) => {
 });
 
 router.get('/:id', authenticate, async (req, res) => {
-    out.log("INFO", "GET", "Got request: " + req.url);
+    out.log("INFO", "GET", "Got request: " + req.originalUrl);
     
     const groupId = req.params.id;
     let connection;

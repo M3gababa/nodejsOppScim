@@ -32,7 +32,7 @@ router.get('/', authenticate, async (req, res) => {
             Resources: users
         };
         
-        out.logToFile(jsonResult);
+        
         res.json(jsonResult);
     } catch (err) {
         out.log("ERROR", "GET", err);
@@ -55,7 +55,7 @@ router.get('/:id', authenticate, async (req, res) => {
             const entitlements = entltList.map(entry => ({ "entitlement_pk_id": entry.entitlements.id, "entitlement_type": entry.entitlements.type, "entitlement_name": entry.entitlements.display_name }));
 
             const jsonResult = scimUtils.createScimUserFromTableRow(userResult[0], groups, entitlements);
-            out.logToFile(jsonResult);
+            
             res.json(jsonResult);
         } else {
             out.log("WARNING", "GET", `User ${userId} not found`);

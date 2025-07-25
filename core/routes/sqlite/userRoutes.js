@@ -71,7 +71,6 @@ router.get('/', authenticate, async (req, res) => {
             Resources: users
         };
         
-        out.logToFile(jsonResult);
         res.json(jsonResult);
     } catch (err) {
         out.log("ERROR", "GET", err);
@@ -133,7 +132,7 @@ router.get('/:id', authenticate, async (req, res) => {
             const groups = await dbUtils.executeSql(groupQuery, userResult.id);
             const entitlements = await dbUtils.executeSql(entitlementQuery, userResult.id);
             const jsonResult = scimUtils.createScimUserFromTableRow(userResult, groups, entitlements);
-            out.logToFile(jsonResult);
+            
             res.json(jsonResult);
         } else {
             out.log("WARNING", "GET", `User ${userId} not found`);

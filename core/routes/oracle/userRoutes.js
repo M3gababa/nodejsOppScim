@@ -19,7 +19,6 @@ router.get('/', authenticate, async (req, res) => {
         
         if (result.rows.length > 0) {
             const jsonResult = createScimUserFromTableRow(result.rows[0]);
-            out.logToFile(jsonResult);
             res.json(jsonResult);
         } else {
             out.log("WARNING", "GET", `User ${userId} not found`);
@@ -41,7 +40,6 @@ router.get('/:id', authenticate, async (req, res) => {
     const userId = req.params.id;
     try {
         if (userId) {
-            out.logToFile(jsonResult);
             res.json(jsonResult);
         } else {
             out.log("WARNING", "GET", `User ${userId} not found`);

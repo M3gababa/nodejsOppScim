@@ -28,7 +28,6 @@ router.get('/', authenticate, async (req, res) => {
             Resources: entitlements
         };
         
-        out.logToFile(jsonResult);
         res.json(jsonResult);
     } catch (err) {
         out.log("ERROR", "GET", err);
@@ -48,7 +47,7 @@ router.get('/:id', authenticate, async (req, res) => {
             const memberList = await dbUtils.getUsersPerEntitlement(entltId);
             const members = memberList.map(entry => ({ "user_pk_id": entry.users.id, "user_pk_email": entry.users.email }));
             const jsonResult = scimUtils.createScimEntitlementFromTableRow(entltResult[0], members);
-            out.logToFile(jsonResult);
+            
             res.json(jsonResult);
         } else {
             out.log("WARNING", "GET", `Group ${entltId} not found`);

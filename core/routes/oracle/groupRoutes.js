@@ -25,7 +25,6 @@ router.get('', authenticate, async (req, res) => {
             Resources: groups
         };
         
-        out.logToFile(jsonResult);
         res.json(jsonResult);
     } catch (err) {
         out.log("ERROR", "GET", err);
@@ -49,7 +48,6 @@ router.get('/:id', authenticate, async (req, res) => {
         const result = await executeQuery(connection, query, [groupId]);
         if (result.rows.length > 0) {
             const jsonResult = createScimGroupFromTableRow(result.rows[0]);
-            out.log(jsonResult);
             res.json(jsonResult);
         } else {
             out.log("WARNING", "GET", `Group ${groupId} not found`);

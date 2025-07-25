@@ -9,8 +9,8 @@ class Logs {
         let logEntry = "[ " + timestamp + " ] [ " + type + " ] [ " + action + " ] " + message;
 
         console.log(logEntry);
-
-        if(!process.env.DOMAIN)
+        
+        if(process.env.DOMAIN)
             fileLogs.logToFile(logEntry + "\r\n");
     }
 

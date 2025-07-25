@@ -18,7 +18,6 @@ router.get('/', authenticate, async (req, res) => {
             Resources: entitlements
         };
         
-        out.logToFile(jsonResult);
         res.json(jsonResult);
     } catch (err) {
         out.log("ERROR", "GET", err);
@@ -34,7 +33,6 @@ router.get('/:id', authenticate, async (req, res) => {
     // TODO
     try {        
          if (entltId) {
-            out.logToFile(jsonResult);
             res.json(jsonResult);
         } else {
             out.log("WARNING", "GET", `Group ${entltId} not found`);

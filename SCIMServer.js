@@ -6,7 +6,7 @@ const out = require('./core/logs');
 const port = process.env.PORT || 3000;
 const baseUrl = process.env.DOMAIN;
 
-global.appRoot = path.resolve(__dirname);
+global.appRoot = process.cwd();
 global.urlRoot = baseUrl ? `https://${baseUrl}.vercel.app` : `http://localhost:${port}`;
 
 // Define express app

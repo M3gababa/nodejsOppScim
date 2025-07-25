@@ -6,12 +6,8 @@ const out = require('./core/logs');
 const port = process.env.PORT || 3000;
 const baseUrl = process.env.DOMAIN;
 
-console.log(baseUrl);
-
 global.appRoot = path.resolve(__dirname);
 global.urlRoot = baseUrl ? `https://${baseUrl}.vercel.app` : `http://localhost:${port}`;
-
-console.log(urlRoot);
 
 // Define express app
 const app = express();
@@ -28,6 +24,5 @@ app.all('*', (req, res) => {
 });
 
 app.listen(port, () => {
-    out.log("INFO", "START", "Service Started");
-    console.log(`SCIM 2.0 Server listening on port ${port}`);
+    out.log("INFO", "START", `SCIM 2.0 Server listening on port ${port}`);
 });

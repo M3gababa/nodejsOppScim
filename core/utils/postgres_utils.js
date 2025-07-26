@@ -51,7 +51,7 @@ const getUsersPerEntitlement = async (entltId) => {
       user_id,
       email
     )
-  `).eq(`entltId`, groupId);
+  `).eq(`entltId`, entltId);
 
   if (error)
     throw new Error(error.message);
@@ -78,7 +78,15 @@ const getGroup = async (id) => {
 }
 
 const getGroupsPerUser = async (userId) => {
-  const { data, error } = await supabase.from(`group_membership`).select(`id, user_id, group_id, groups(id, display_name, description)`).eq(`user_id`, userId);
+  const { data, error } = await supabase.from(`group_membership`).select(`
+    id, 
+    user_id, 
+    group_id, 
+    groups(
+      id, 
+      display_name, 
+      description)
+  `).eq(`user_id`, userId);
 
   if (error)
     throw new Error(error.message);
@@ -105,7 +113,16 @@ const getEntitlement = async (id) => {
 }
 
 const getEntitlementsPerUser = async (userId) => {
-  const { data, error } = await supabase.from(`entitlement_membership`).select(`id, user_id, entitlement_id, entitlements(id, display_name, type, description)`).eq(`user_id`, userId);
+  const { data, error } = await supabase.from(`entitlement_membership`).select(`
+    id, 
+    user_id, 
+    entitlement_id, 
+    entitlements(
+      id, 
+      display_name, 
+      type, 
+      description)
+  `).eq(`user_id`, userId);
 
   if (error)
     throw new Error(error.message);

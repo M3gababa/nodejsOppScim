@@ -45,7 +45,6 @@ function createScimUserFromTableRow(row, groups = [], entitlements = []) {
         entitlements: entitlements.map(entitlement => JSON.parse(
             `{
                 "value":"${entitlement.entitlement_pk_id}",
-                "$ref":"${urlRoot}/scim/v2/Entitlements/${entitlement.entitlement_pk_id}",
                 "type":"${entitlement.entitlement_type}",
                 "display":"${entitlement.entitlement_name}"
             }`
@@ -55,6 +54,8 @@ function createScimUserFromTableRow(row, groups = [], entitlements = []) {
         },
         meta: {
             resourceType: "User",
+            "created": (new Date(2025,6,15)).toISOString(),
+            "lastModified": (new Date()).toISOString(),
             location: `${urlRoot}/scim/v2/Users/${row.id}`
         }
     };
@@ -77,6 +78,8 @@ function createScimGroupFromTableRow(row, members = []) {
             )),
             meta: {
                 resourceType: "Group",
+                "created": (new Date(2025,6,15)).toISOString(),
+                "lastModified": (new Date(2025,6,15)).toISOString(),
                 location: `${urlRoot}/scim/v2/Groups/${row.id}`
             }
         };
@@ -100,6 +103,8 @@ function createScimEntitlementFromTableRow(row, members = []) {
             )),
             meta: {
                 resourceType: "Entitlement",
+                "created": (new Date(2025,6,15)).toISOString(),
+                "lastModified": (new Date(2025,6,15)).toISOString(),
                 location: `${urlRoot}/scim/v2/Entitlements/${row.id}`
             }
         };

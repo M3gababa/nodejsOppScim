@@ -104,7 +104,7 @@ const getEntitlements = async () => {
 }
 
 const getEntitlement = async (id) => {
-  const { data, error } = await supabase.from(`users`).select(`*`).eq(`id`, id);
+  const { data, error } = await supabase.from(`entitlements`).select(`*`).eq(`id`, id);
 
   if (error)
     throw new Error(error.message);

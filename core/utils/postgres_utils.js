@@ -45,13 +45,13 @@ const getUsersPerEntitlement = async (entltId) => {
   let { data, error } = await supabase.from(`entitlement_membership`).select(`
     id,
     user_id,
-    entltId,
+    entitlement_id,
     users (
       id,
       user_id,
       email
     )
-  `).eq(`entltId`, entltId);
+  `).eq(`entitlement_id`, entltId);
 
   if (error)
     throw new Error(error.message);

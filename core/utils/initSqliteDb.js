@@ -2,7 +2,7 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 // Define the database file path.
-const DB_PATH = path.resolve(appRoot, 'mydatabase.db');
+const DB_PATH = path.join(process.cwd(), 'mydatabase.db');
 
 /**
 * Helper function to run db.run with async/await.

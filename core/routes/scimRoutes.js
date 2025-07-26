@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 var router = require('express').Router();
 
 const out = require('../logs');
@@ -8,13 +9,15 @@ const { authenticate } = require('../utils/authn_utils');
 // --- Service Provider Config Endpoints ---
 router.get('/ServiceProviderConfig', authenticate, (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.originalUrl);
-    res.json(JSON.parse(fs.readFileSync(`${appRoot}/scim/serviceProviderConfig.json`, 'utf8')));
+    const f = path.join(process.cwd(), 'scim/serviceProviderConfig.json');
+    res.json(JSON.parse(fs.readFileSync(f, 'utf8')));
 });
 
 router.get('/ResourceTypes', authenticate, async (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.originalUrl);
     
-    const jsonResourceTypes = JSON.parse(fs.readFileSync(`${appRoot}/scim/resourceTypes.json`, 'utf8').replaceAll("https://example.com", urlRoot));
+    const f = path.join(process.cwd(), 'scim/resourceTypes.json');
+    const jsonResourceTypes = JSON.parse(fs.readFileSync(f, 'utf8').replaceAll("https://example.com", urlRoot));
     const jsonResult = {
         "schemas": [
             "urn:ietf:params:scim:api:messages:2.0:ListResponse"
@@ -30,7 +33,8 @@ router.get('/ResourceTypes/:id', async (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.originalUrl);
     
     const attrId = req.params.id;
-    const jsonResourceTypes = JSON.parse(fs.readFileSync(`${appRoot}/scim/resourceTypes.json`, 'utf8').replaceAll("https://example.com", urlRoot));
+    const f = path.join(process.cwd(), 'scim/resourceTypes.json');
+    const jsonResourceTypes = JSON.parse(fs.readFileSync(f, 'utf8').replaceAll("https://example.com", urlRoot));
     const resourceType = jsonResourceTypes.find(obj => obj.id===attrId);
     
     res.json(resourceType);
@@ -39,7 +43,8 @@ router.get('/ResourceTypes/:id', async (req, res) => {
 router.get('/Schemas', authenticate, async (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.originalUrl);
     
-    const jsonSchema = JSON.parse(fs.readFileSync(`${appRoot}/scim/schemas.json`, 'utf8').replaceAll("https://example.com", urlRoot));
+    const f = path.join(process.cwd(), 'scim/schemas.json');
+    const jsonSchema = JSON.parse(fs.readFileSync(f, 'utf8').replaceAll("https://example.com", urlRoot));
     const jsonResult = {
         "schemas": [
             "urn:ietf:params:scim:api:messages:2.0:ListResponse"
@@ -55,7 +60,8 @@ router.get('/Schemas/:id', authenticate, async (req, res) => {
     out.log("INFO", "GET", "Got request: " + req.originalUrl);
     
     const attrId = req.params.id;
-    const jsonSchema = JSON.parse(fs.readFileSync(`${appRoot}/scim/schemas.json`, 'utf8').replaceAll("https://example.com", urlRoot));
+    const f = path.join(process.cwd(), 'scim/schemas.json');
+    const jsonSchema = JSON.parse(fs.readFileSync(f, 'utf8').replaceAll("https://example.com", urlRoot));
     
     const attributeSpec = jsonSchema.find(obj => obj.id===attrId);
     

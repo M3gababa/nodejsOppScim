@@ -12,7 +12,7 @@ function createScimUserFromTableRow(row, groups = [], entitlements = []) {
         familyName: row.lastname,
         formatted: row.firstname + " " + row.lastname,
         displayName: row.firstname + " " + row.lastname,
-        active: row.status===1,
+        active: row.status===1 || row.status===true,
         title: row.title,
         emails: [
             {

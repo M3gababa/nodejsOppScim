@@ -94,13 +94,6 @@ function createScimEntitlementFromTableRow(row, members = []) {
             type: row.type,
             description: row.description,
             displayName: row.display_name,
-            members: members.map(member => JSON.parse(
-                `{
-                    "value":"${member.user_pk_id}",
-                    "$ref":"${urlRoot}/scim/v2/Users/${member.user_pk_id}",
-                    "display":"${member.user_pk_email}"
-                }`
-            )),
             meta: {
                 resourceType: "Entitlement",
                 "created": (new Date(2025,6,15)).toISOString(),
